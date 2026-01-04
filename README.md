@@ -63,41 +63,6 @@ Requires Apple Developer account ($99/year):
 npx eas build --platform ios --profile preview
 ```
 
-### Auto-build on GitHub Push
-
-Add this workflow to `.github/workflows/build.yml`:
-
-```yaml
-name: EAS Build
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-
-      - run: npm install
-
-      - run: eas build --platform android --profile preview --non-interactive
-```
-
-To set this up:
-1. Get your Expo token from [expo.dev/accounts/[account]/settings/access-tokens](https://expo.dev/accounts)
-2. Add it as `EXPO_TOKEN` secret in GitHub repo settings
-
 ## Project Structure
 
 ```
