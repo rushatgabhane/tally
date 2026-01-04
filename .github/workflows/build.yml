@@ -1,4 +1,4 @@
-name: EAS Build
+name: Expo build android
 
 on:
   push:

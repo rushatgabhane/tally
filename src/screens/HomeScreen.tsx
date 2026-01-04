@@ -19,8 +19,9 @@ import { notifyPartnerOfCompletion } from '../services/notificationService';
 import { formatDisplayDate, getTodayDateString, getDaysSinceStart } from '../utils/dateUtils';
 import { TOTAL_PROBLEMS } from '../config/constants';
 import { getProblem } from '../data/problems';
+import { NavigationProp } from '../types/navigation';
 
-export function HomeScreen({ navigation }: { navigation: any }) {
+export function HomeScreen({ navigation }: { navigation: NavigationProp }) {
   const { userId, partnerId, userName, partnerName, logout } = useAuth();
   const { myTasks, myProgress, partnerProgress, loading } =
     useTodayTasks(userId);

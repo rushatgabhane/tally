@@ -29,8 +29,8 @@ export function LoginScreen() {
 
     try {
       await login(email.trim().toLowerCase(), password);
-    } catch (err: any) {
-      setError(err.message || 'Login failed');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed');
     } finally {
       setLoading(false);
     }

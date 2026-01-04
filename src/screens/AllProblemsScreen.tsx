@@ -14,8 +14,9 @@ import {
   subscribeToProgress,
   setUserProgress,
 } from '../services/progressService';
+import { NavigationProp } from '../types/navigation';
 
-export function AllProblemsScreen({ navigation }: { navigation: any }) {
+export function AllProblemsScreen({ navigation }: { navigation: NavigationProp }) {
   const { userId } = useAuth();
   const insets = useSafeAreaInsets();
   const [myProgress, setMyProgress] = useState(0);
@@ -91,20 +92,6 @@ export function AllProblemsScreen({ navigation }: { navigation: any }) {
       </TouchableOpacity>
     );
   };
-
-  const renderSectionHeader = (rating: number) => (
-    <View className="bg-zinc-100 px-4 py-2">
-      <Text className="text-sm font-semibold text-zinc-700">
-        Rating {rating}
-      </Text>
-    </View>
-  );
-
-  // Group problems by rating
-  const sections = RATINGS.map((rating) => ({
-    rating,
-    data: PROBLEMS.filter((p) => p.rating === rating),
-  }));
 
   if (loading) {
     return (

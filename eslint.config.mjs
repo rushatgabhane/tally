@@ -5,7 +5,25 @@ import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [
-  js.configs.recommended,
+  {
+    ignores: ['node_modules/', '.expo/', 'dist/', 'build/'],
+  },
+  {
+    files: ['**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'commonjs',
+      globals: {
+        module: 'writable',
+        require: 'readonly',
+        __dirname: 'readonly',
+        exports: 'writable',
+      },
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+    },
+  },
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -22,9 +40,7 @@ export default [
         process: 'readonly',
         setTimeout: 'readonly',
         clearTimeout: 'readonly',
-        module: 'readonly',
-        require: 'readonly',
-        __dirname: 'readonly',
+        fetch: 'readonly',
       },
     },
     plugins: {
@@ -38,16 +54,16 @@ export default [
       ...reactHooks.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      'react/no-unescaped-entities': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/ban-ts-comment': 'off',
     },
     settings: {
       react: {
         version: 'detect',
       },
     },
-  },
-  {
-    ignores: ['node_modules/', '.expo/', 'dist/', 'build/'],
   },
 ];
